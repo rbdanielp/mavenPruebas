@@ -9,6 +9,8 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.util.*;
 
+
+//URL: http://localhost:8080/maven-project/invocacionPost.jsp
 public class Parametros extends HttpServlet {
 
 	private static final Logger logger = LogManager.getLogger(Parametros.class);

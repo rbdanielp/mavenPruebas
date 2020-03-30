@@ -8,7 +8,7 @@
 </head>
 <body>
    <h1>Formulario</h1>
-   <form method="POST" action="/maven-project/servlets/Parametros">
+   <form method="POST" action="/maven-project/Parametros">
      Nombre: <INPUT TYPE="TEXT" NAME="nombre"><BR>
      Primer Apellido:<INPUT TYPE="TEXT" NAME="apellido1"><BR>
      Segundo Apellido:<INPUT TYPE="TEXT" NAME="apellido2"><BR>
