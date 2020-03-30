@@ -18,7 +18,8 @@ public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LogManager.getLogger(Controller.class);
-
+	private static final String ACCION_POST= "invocacionPost.do";
+	private static final String ACCION_GET= "invocacionGet.do";
 
 	public Controller() {
 		super();
@@ -33,25 +34,28 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		logger.info(" ");
 		logger.info(" ");
-		logger.info("			=======");
-		logger.info("			DO GET ");
-		logger.info("			=======");
+		logger.info("			===================");
+		logger.info("			Controller: DO GET ");
+		logger.info("			===================");
 		logger.info(" ");
 		logger.info(" ");
 
 		String accion = getAccion(request);
-//		try {
-//			switch (accion) {
-//			case value:
-//				
-//				break;
-//
-//			default:
-//				break;
-//			}
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
+		try {
+			switch (accion) {
+			case ACCION_POST:
+				logger.info("Controller: switch: invocacionPost.do");
+				break;
+			case ACCION_GET:
+				logger.info("Controller: switch: invocacionGet.do");
+			break;		
+
+			default:
+				break;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -65,9 +69,9 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		logger.info(" ");
 		logger.info(" ");
-		logger.info("			=======");
-		logger.info("			DO POST");
-		logger.info("			=======");
+		logger.info("			===================");
+		logger.info("			Controller: DO POST");
+		logger.info("			===================");
 		logger.info(" ");
 		logger.info(" ");
 		
@@ -99,7 +103,7 @@ public class Controller extends HttpServlet {
 		String accion = req.getParameter("accion");
 		
 		logger.info(" ");
-		logger.info("Accion: " + accion);
+		logger.info("Controller: Accion: " + accion);
 		logger.info(" ");
 		return accion;
 	}

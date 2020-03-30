@@ -23,9 +23,9 @@ public class Parametros extends HttpServlet {
 
 		logger.info(" ");
 		logger.info(" ");
-		logger.info("			=======");
-		logger.info("			DO GET ");
-		logger.info("			=======");
+		logger.info("			===================");
+		logger.info("			Parametros: DO GET ");
+		logger.info("			====================");
 		logger.info(" ");
 		logger.info(" ");
 		
@@ -76,9 +76,9 @@ public class Parametros extends HttpServlet {
 		
 		logger.info(" ");
 		logger.info(" ");
-		logger.info("			=======");
-		logger.info("			DO POST");
-		logger.info("			=======");
+		logger.info("			===================");
+		logger.info("			Parametros: DO POST");
+		logger.info("			===================");
 		logger.info(" ");
 		logger.info(" ");
 		
