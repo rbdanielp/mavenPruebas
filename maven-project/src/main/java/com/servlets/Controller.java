@@ -32,22 +32,22 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		logger.info(" ");
-		logger.info(" ");
-		logger.info("			===================");
-		logger.info("			Controller: DO GET ");
-		logger.info("			===================");
-		logger.info(" ");
-		logger.info(" ");
+		logger.debug(" ");
+		logger.debug(" ");
+		logger.debug("			===================");
+		logger.debug("			Controller: DO GET ");
+		logger.debug("			===================");
+		logger.debug(" ");
+		logger.debug(" ");
 
 		String accion = getAccion(request);
 		try {
 			switch (accion) {
 			case ACCION_POST:
-				logger.info("Controller: switch: invocacionPost.do");
+				logger.debug("Controller: switch: invocacionPost.do");
 				break;
 			case ACCION_GET:
-				logger.info("Controller: switch: invocacionGet.do");
+				logger.debug("Controller: switch: invocacionGet.do");
 			break;		
 
 			default:
@@ -67,13 +67,13 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		logger.info(" ");
-		logger.info(" ");
-		logger.info("			===================");
-		logger.info("			Controller: DO POST");
-		logger.info("			===================");
-		logger.info(" ");
-		logger.info(" ");
+		logger.debug(" ");
+		logger.debug(" ");
+		logger.debug("			===================");
+		logger.debug("			Controller: DO POST");
+		logger.debug("			===================");
+		logger.debug(" ");
+		logger.debug(" ");
 		
 		String accion = getAccion(request);
 //		try {
@@ -102,9 +102,9 @@ public class Controller extends HttpServlet {
 		//String accion = req.getRequestURI().substring(req.getContextPath().length() + 1, req.getRequestURI().length());
 		String accion = req.getParameter("accion");
 		
-		logger.info(" ");
-		logger.info("Controller: Accion: " + accion);
-		logger.info(" ");
+		logger.debug(" ");
+		logger.debug("Controller: Accion: " + accion);
+		logger.debug(" ");
 		return accion;
 	}
 

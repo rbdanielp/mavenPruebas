@@ -21,13 +21,13 @@ public class Parametros extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		logger.info(" ");
-		logger.info(" ");
-		logger.info("			===================");
-		logger.info("			Parametros: DO GET ");
-		logger.info("			====================");
-		logger.info(" ");
-		logger.info(" ");
+		logger.debug(" ");
+		logger.debug(" ");
+		logger.debug("			===================");
+		logger.debug("			Parametros: DO GET ");
+		logger.debug("			====================");
+		logger.debug(" ");
+		logger.debug(" ");
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -74,13 +74,13 @@ public class Parametros extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		logger.info(" ");
-		logger.info(" ");
-		logger.info("			===================");
-		logger.info("			Parametros: DO POST");
-		logger.info("			===================");
-		logger.info(" ");
-		logger.info(" ");
+		logger.debug(" ");
+		logger.debug(" ");
+		logger.debug("			===================");
+		logger.debug("			Parametros: DO POST");
+		logger.debug("			===================");
+		logger.debug(" ");
+		logger.debug(" ");
 		
 		doGet(request, response);
 	}
