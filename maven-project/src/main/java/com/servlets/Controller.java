@@ -10,17 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/**
- * Servlet implementation class Controller
- */
+// INVOCACION 
+// http://localhost:8080/maven-project/Controller?accion=123
+
+
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LogManager.getLogger(Controller.class);
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+
 	public Controller() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -71,6 +70,21 @@ public class Controller extends HttpServlet {
 		logger.info("			=======");
 		logger.info(" ");
 		logger.info(" ");
+		
+		String accion = getAccion(request);
+//		try {
+//			switch (accion) {
+//			case value:
+//				
+//				break;
+//
+//			default:
+//				break;
+//			}
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+		
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
@@ -81,9 +95,11 @@ public class Controller extends HttpServlet {
 	// GET ACCION
 	// *********************************************************************************
 	private String getAccion(HttpServletRequest req) {
-		String accion = req.getRequestURI().substring(req.getContextPath().length() + 1, req.getRequestURI().length());
+		//String accion = req.getRequestURI().substring(req.getContextPath().length() + 1, req.getRequestURI().length());
+		String accion = req.getParameter("accion");
+		
 		logger.info(" ");
-		logger.info("			Accion: " + accion);
+		logger.info("Accion: " + accion);
 		logger.info(" ");
 		return accion;
 	}
