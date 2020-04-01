@@ -1,6 +1,9 @@
 package com.servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.negocio.Fachada;
 
 // INVOCACION 
 // http://localhost:8080/maven-project/Controller?accion=123
@@ -20,6 +25,7 @@ public class Controller extends HttpServlet {
 	private static final Logger logger = LogManager.getLogger(Controller.class);
 	private static final String ACCION_POST= "invocacionPost.do";
 	private static final String ACCION_GET= "invocacionGet.do";
+	private static final String ACCION_OPERACION_CON_FECHA= "operacionConFecha.do";
 
 	public Controller() {
 		super();
@@ -44,11 +50,33 @@ public class Controller extends HttpServlet {
 		try {
 			switch (accion) {
 			case ACCION_POST:
-				logger.debug("Controller: switch: invocacionPost.do");
+				logger.debug("Controller: switch: ACCION_POST");
 				break;
 			case ACCION_GET:
-				logger.debug("Controller: switch: invocacionGet.do");
-			break;		
+				logger.debug("Controller: switch: ACCION_GET");
+			break;	
+			case ACCION_OPERACION_CON_FECHA:
+				logger.debug("Controller: switch: ACCION_OPERACION_CON_FECHA");
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				
+				int horas = 0;
+				//String dd = request.getParameter("dias");
+				//logger.debug("dd= " + dd);
+				//dias = Integer.parseInt(dd);
+				horas = Integer.parseInt(request.getParameter("horas"));
+				
+				Date dNow = new Date();
+				String fechaActual = sdf.format(dNow);
+				logger.debug("fechaActual: " + fechaActual );
+				
+				logger.debug("horas: " + horas );
+				Date nuevaF = Fachada.sumarRestarHorasFecha(dNow, horas);
+			
+				String nuevaFecha = sdf.format(nuevaF);
+				logger.debug("nuevaFecha: " + nuevaFecha );
+
+			break;				
 
 			default:
 				break;
@@ -106,6 +134,19 @@ public class Controller extends HttpServlet {
 		logger.debug("Controller: Accion: " + accion);
 		logger.debug(" ");
 		return accion;
+	}
+	
+	
+	// *********************************************************************************
+	// GET ACCION
+	// *********************************************************************************
+	private Enumeration getParametrosOperacionesFecha(HttpServletRequest req) {
+		Enumeration paramOperacionesFecha = req.getParameterNames();
+		
+		logger.debug(" ");
+		logger.debug("Controller: getParametrosOperacionesFecha: " );
+		logger.debug(" ");
+		return paramOperacionesFecha;
 	}
 
 }
