@@ -30,4 +30,24 @@ public class Fachada {
 		
 	      return calendar.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
 	}
+	
+	
+	public static void  logTitulo(String texto){
+		
+		//logger.debug("logTitulo: texto " + texto );
+		String linea = "";
+
+		for (int i = 0; i < texto.length(); i++) {
+			linea = linea + "=";
+		}
+		
+		logger.debug(" ");
+		logger.debug(" ");
+		logger.debug(linea);
+		logger.debug(texto.toUpperCase());
+		logger.debug(linea);
+		logger.debug(" ");
+		logger.debug(" ");
+
+	}
 }

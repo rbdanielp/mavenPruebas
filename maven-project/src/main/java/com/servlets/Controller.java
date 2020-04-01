@@ -39,32 +39,27 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		logger.debug(" ");
-		logger.debug(" ");
-		logger.debug("			===================");
-		logger.debug("			Controller: DO GET ");
-		logger.debug("			===================");
-		logger.debug(" ");
-		logger.debug(" ");
+		Fachada.logTitulo("Controller: DO GET");
+		
 
 		String accion = getAccion(request);
 		try {
 			switch (accion) {
 			case ACCION_POST:
-				logger.debug("Controller: switch: ACCION_POST");
+				//logger.debug("Controller: switch: ACCION_POST");
+				Fachada.logTitulo("ACCION_POST");
 				break;
 			case ACCION_GET:
-				logger.debug("Controller: switch: ACCION_GET");
+				//logger.debug("Controller: switch: ACCION_GET");
+				Fachada.logTitulo("ACCION_GET");
 			break;	
 			case ACCION_OPERACION_CON_FECHA:
-				logger.debug("Controller: switch: ACCION_OPERACION_CON_FECHA");
+				//logger.debug("Controller: switch: ACCION_OPERACION_CON_FECHA");
+				Fachada.logTitulo("ACCION_OPERACION_CON_FECHA");
 				
 				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 				
 				int horas = 0;
-				//String dd = request.getParameter("dias");
-				//logger.debug("dd= " + dd);
-				//dias = Integer.parseInt(dd);
 				horas = Integer.parseInt(request.getParameter("horas"));
 				
 				Date dNow = new Date();
@@ -98,13 +93,7 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		logger.debug(" ");
-		logger.debug(" ");
-		logger.debug("			===================");
-		logger.debug("			Controller: DO POST");
-		logger.debug("			===================");
-		logger.debug(" ");
-		logger.debug(" ");
+		Fachada.logTitulo("Controller: DO POST");
 		
 		String accion = getAccion(request);
 //		try {
@@ -133,9 +122,7 @@ public class Controller extends HttpServlet {
 		//String accion = req.getRequestURI().substring(req.getContextPath().length() + 1, req.getRequestURI().length());
 		String accion = req.getParameter("accion");
 		
-		logger.debug(" ");
-		logger.debug("Controller: Accion: " + accion);
-		logger.debug(" ");
+		Fachada.logTitulo("Controller: get Accion");
 		return accion;
 	}
 	
@@ -146,9 +133,7 @@ public class Controller extends HttpServlet {
 	private Enumeration getParametrosOperacionesFecha(HttpServletRequest req) {
 		Enumeration paramOperacionesFecha = req.getParameterNames();
 		
-		logger.debug(" ");
-		logger.debug("Controller: getParametrosOperacionesFecha: " );
-		logger.debug(" ");
+		Fachada.logTitulo("Controller: getParametrosOperacionesFecha");
 		return paramOperacionesFecha;
 	}
 	
