@@ -1,6 +1,7 @@
 package com.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -75,6 +76,8 @@ public class Controller extends HttpServlet {
 			
 				String nuevaFecha = sdf.format(nuevaF);
 				logger.debug("nuevaFecha: " + nuevaFecha );
+				
+				escibirFechaRespuesta(response,  nuevaFecha);
 
 			break;				
 
@@ -138,7 +141,7 @@ public class Controller extends HttpServlet {
 	
 	
 	// *********************************************************************************
-	// GET ACCION
+	// 
 	// *********************************************************************************
 	private Enumeration getParametrosOperacionesFecha(HttpServletRequest req) {
 		Enumeration paramOperacionesFecha = req.getParameterNames();
@@ -147,6 +150,29 @@ public class Controller extends HttpServlet {
 		logger.debug("Controller: getParametrosOperacionesFecha: " );
 		logger.debug(" ");
 		return paramOperacionesFecha;
+	}
+	
+	
+	// *********************************************************************************
+	// 
+	// *********************************************************************************
+	private void  escibirFechaRespuesta(HttpServletResponse response, String nuevaFecha) throws IOException {
+		
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<body>");
+		out.println("<h1>Resultado</h1><br>");
+		out.println("<br>");
+		
+		
+		out.print("Nueva Fecha: " + nuevaFecha);
+		
+		out.println("<br>");
+		out.println("<br>");
+		out.println("<br>");
+		
+		out.println("</body>");
+		out.println("</html>");
 	}
 
 }
