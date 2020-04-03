@@ -18,7 +18,8 @@ public class Fachada {
 	
 	// Suma o resta las horas recibidos a la fecha  
 	public static Date sumarRestarHorasFecha(Date fecha, int horas) {
-
+		Loguear.logTitulo("sumarRestarHorasFecha");
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		logger.debug("Fachada: sumarRestarHorasFecha: Parametros: Fecha " + sdf.format(fecha) + " horas: " + horas);
 
@@ -34,7 +35,8 @@ public class Fachada {
 	
 	
 	public static int procesarOperacionConDosNumeros(String operacion, int numero1, int numero2) {
-
+		Loguear.logTitulo("procesarOperacionConDosNumeros");
+		
 		int numeroFinal = 0;
 
 		switch (operacion) {

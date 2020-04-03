@@ -145,7 +145,7 @@ public class Controller extends HttpServlet {
 		String nuevaFecha = sdf.format(nuevaF);
 		logger.debug("nuevaFecha: " + nuevaFecha);
 
-		escibirFechaRespuesta(response, nuevaFecha);
+		escibirRespuesta(response, nuevaFecha+"");
 	}
 	
 	// *********************************************************************************
@@ -167,14 +167,11 @@ public class Controller extends HttpServlet {
 		numero2 = Integer.parseInt(request.getParameter("numero2"));
 		logger.debug("numero2: " + numero2);
 
-
-
 		numeroFinal = Fachada.procesarOperacionConDosNumeros(operacion, numero1, numero2);
-
 
 		logger.debug("numeroFinal: " + numeroFinal);
 
-		escibirNumeroRespuesta(response, numeroFinal);
+		escibirRespuesta(response, numeroFinal+"");
 	}
 	
 	// *********************************************************************************
@@ -188,11 +185,11 @@ public class Controller extends HttpServlet {
 	}
 
 	
-	
+
 	// *********************************************************************************
 	//
 	// *********************************************************************************
-	private void escibirFechaRespuesta(HttpServletResponse response, String nuevaFecha) throws IOException {
+	private void escibirRespuesta(HttpServletResponse response, String  respuesta) throws IOException {
 
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
@@ -200,28 +197,7 @@ public class Controller extends HttpServlet {
 		out.println("<h1>Resultado</h1><br>");
 		out.println("<br>");
 
-		out.print("Nueva Fecha: " + nuevaFecha);
-
-		out.println("<br>");
-		out.println("<br>");
-		out.println("<br>");
-
-		out.println("</body>");
-		out.println("</html>");
-	}
-	
-	// *********************************************************************************
-	//
-	// *********************************************************************************
-	private void escibirNumeroRespuesta(HttpServletResponse response, int numero) throws IOException {
-
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("<h1>Resultado</h1><br>");
-		out.println("<br>");
-
-		out.print("Resultado: " + numero);
+		out.print("Respuesta: " + respuesta);
 
 		out.println("<br>");
 		out.println("<br>");
