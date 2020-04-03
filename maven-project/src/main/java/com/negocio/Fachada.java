@@ -50,7 +50,7 @@ public class Fachada {
 		case "Dividir":
 			numeroFinal = 0;
 			break;
-
+ 
 		default:
 			numeroFinal = 0;
 			break;
