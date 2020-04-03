@@ -17,37 +17,45 @@ public class Fachada {
 	//Aqui se escriben los metodos que acceden a la DB y devulven los Beans correspondientes
 	
 	// Suma o resta las horas recibidos a la fecha  
-	public static Date sumarRestarHorasFecha(Date fecha, int horas){
-		
+	public static Date sumarRestarHorasFecha(Date fecha, int horas) {
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		logger.debug("Fachada: sumarRestarHorasFecha: Parametros: Fecha " + sdf.format(fecha) + " horas: " + horas );
-	
-	      Calendar calendar = Calendar.getInstance();
-		
-	      calendar.setTime(fecha); // Configuramos la fecha que se recibe
-		
-	      calendar.add(Calendar.HOUR, horas);  // numero de horas a añadir, o restar en caso de horas<0
-		
-	      return calendar.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
+		logger.debug("Fachada: sumarRestarHorasFecha: Parametros: Fecha " + sdf.format(fecha) + " horas: " + horas);
+
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.setTime(fecha); // Configuramos la fecha que se recibe
+
+		calendar.add(Calendar.HOUR, horas); // numero de horas a añadir, o restar en caso de horas<0
+
+		return calendar.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
 	}
 	
 	
-	public static void  logTitulo(String texto){
-		
-		//logger.debug("logTitulo: texto " + texto );
-		String linea = "";
+	
+	public static int procesarOperacionConDosNumeros(String operacion, int numero1, int numero2) {
 
-		for (int i = 0; i < texto.length(); i++) {
-			linea = linea + "=";
+		int numeroFinal = 0;
+
+		switch (operacion) {
+		case "Sumar":
+			numeroFinal = numero1 + numero2;
+			break;
+		case "Restar":
+			numeroFinal = numero1 - numero2;
+			break;
+		case "Multiplicar":
+			numeroFinal = numero1 * numero2;
+			break;
+		case "Dividir":
+			numeroFinal = 0;
+			break;
+
+		default:
+			numeroFinal = 0;
+			break;
 		}
-		
-		logger.debug(" ");
-		logger.debug(" ");
-		logger.debug(linea);
-		logger.debug(texto.toUpperCase());
-		logger.debug(linea);
-		logger.debug(" ");
-		logger.debug(" ");
-
+		return numeroFinal;
 	}
+	
 }

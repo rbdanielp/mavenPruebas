@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.negocio.Fachada;
+import com.negocio.Loguear;
 
 // INVOCACION 
 // http://localhost:8080/maven-project/Controller?accion=123
@@ -28,51 +29,37 @@ public class Controller extends HttpServlet {
 	private static final String ACCION_POST = "invocacionPost.do";
 	private static final String ACCION_GET = "invocacionGet.do";
 	private static final String ACCION_OPERACION_CON_FECHA = "operacionConFecha.do";
+	private static final String ACCION_OPERACION_CON_NUMEROS = "operacionConNumeros.do";
 
+	
+	
 	public Controller() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	// *********************************************************************************
-	//
-	// *********************************************************************************
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Fachada.logTitulo("Controller: DO GET");
+
+		Loguear.logTitulo("Controller: DO GET");
 
 		String accion = getAccion(request);
 		try {
 			switch (accion) {
 			case ACCION_POST:
-				// logger.debug("Controller: switch: ACCION_POST");
-				Fachada.logTitulo("ACCION_POST");
+				Loguear.logTitulo("ACCION_POST");
 				break;
 			case ACCION_GET:
-				// logger.debug("Controller: switch: ACCION_GET");
-				Fachada.logTitulo("ACCION_GET");
+				Loguear.logTitulo("ACCION_GET");
 				break;
 			case ACCION_OPERACION_CON_FECHA:
-				// logger.debug("Controller: switch: ACCION_OPERACION_CON_FECHA");
-				Fachada.logTitulo("ACCION_OPERACION_CON_FECHA");
 
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				procesar_operacion_con_fecha( request,  response);
+				break;
+				
+			case ACCION_OPERACION_CON_NUMEROS:
 
-				int horas = 0;
-				horas = Integer.parseInt(request.getParameter("horas"));
-
-				Date dNow = new Date();
-				String fechaActual = sdf.format(dNow);
-				logger.debug("fechaActual: " + fechaActual);
-
-				logger.debug("horas: " + horas);
-				Date nuevaF = Fachada.sumarRestarHorasFecha(dNow, horas);
-
-				String nuevaFecha = sdf.format(nuevaF);
-				logger.debug("nuevaFecha: " + nuevaFecha);
-
-				escibirFechaRespuesta(response, nuevaFecha);
-
+				procesar_operacion_con_numeros( request,  response);
 				break;
 
 			default:
@@ -86,12 +73,12 @@ public class Controller extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	// *********************************************************************************
-	//
-	// *********************************************************************************
+	
+	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Fachada.logTitulo("Controller: DO POST");
+		Loguear.logTitulo("Controller: DO POST");
 
 		String accion = getAccion(request);
 		// try {
@@ -113,6 +100,17 @@ public class Controller extends HttpServlet {
 
 	//////////////////////////////////////////////////////////////////////////////
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// *********************************************************************************
 	// GET ACCION
 	// *********************************************************************************
@@ -121,20 +119,76 @@ public class Controller extends HttpServlet {
 		// 1, req.getRequestURI().length());
 		String accion = req.getParameter("accion");
 
-		Fachada.logTitulo("Controller: get Accion");
+		Loguear.logTitulo("Controller: get Accion");
 		return accion;
 	}
 
+	
+	// *********************************************************************************
+	//
+	// *********************************************************************************
+	private void procesar_operacion_con_fecha(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Loguear.logTitulo("procesar_operacion_con_fecha");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+		int horas = 0;
+		horas = Integer.parseInt(request.getParameter("horas"));
+
+		Date dNow = new Date();
+		String fechaActual = sdf.format(dNow);
+		logger.debug("fechaActual: " + fechaActual);
+
+		logger.debug("horas: " + horas);
+		Date nuevaF = Fachada.sumarRestarHorasFecha(dNow, horas);
+
+		String nuevaFecha = sdf.format(nuevaF);
+		logger.debug("nuevaFecha: " + nuevaFecha);
+
+		escibirFechaRespuesta(response, nuevaFecha);
+	}
+	
+	// *********************************************************************************
+	//
+	// *********************************************************************************
+	private void procesar_operacion_con_numeros(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Loguear.logTitulo("procesar_operacion_con_numeros");
+		
+	
+
+		int numeroFinal = 0;
+		int numero1 = 0;
+		int numero2 = 0;
+		
+		String operacion = request.getParameter("operacion");
+		logger.debug("operacion: " + operacion);
+		numero1 = Integer.parseInt(request.getParameter("numero1"));
+		logger.debug("numero1: " + numero1);
+		numero2 = Integer.parseInt(request.getParameter("numero2"));
+		logger.debug("numero2: " + numero2);
+
+
+
+		numeroFinal = Fachada.procesarOperacionConDosNumeros(operacion, numero1, numero2);
+
+
+		logger.debug("numeroFinal: " + numeroFinal);
+
+		escibirNumeroRespuesta(response, numeroFinal);
+	}
+	
 	// *********************************************************************************
 	//
 	// *********************************************************************************
 	private Enumeration getParametrosOperacionesFecha(HttpServletRequest req) {
 		Enumeration paramOperacionesFecha = req.getParameterNames();
 
-		Fachada.logTitulo("Controller: getParametrosOperacionesFecha");
+		Loguear.logTitulo("Controller: getParametrosOperacionesFecha");
 		return paramOperacionesFecha;
 	}
 
+	
+	
 	// *********************************************************************************
 	//
 	// *********************************************************************************
@@ -147,6 +201,27 @@ public class Controller extends HttpServlet {
 		out.println("<br>");
 
 		out.print("Nueva Fecha: " + nuevaFecha);
+
+		out.println("<br>");
+		out.println("<br>");
+		out.println("<br>");
+
+		out.println("</body>");
+		out.println("</html>");
+	}
+	
+	// *********************************************************************************
+	//
+	// *********************************************************************************
+	private void escibirNumeroRespuesta(HttpServletResponse response, int numero) throws IOException {
+
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<body>");
+		out.println("<h1>Resultado</h1><br>");
+		out.println("<br>");
+
+		out.print("Resultado: " + numero);
 
 		out.println("<br>");
 		out.println("<br>");
