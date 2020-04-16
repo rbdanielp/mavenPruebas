@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.GrupoDePrueba</groupId>
   <artifactId>maven-project</artifactId>
-  <packaging>war</packaging>
+  <packaging>ejb</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>maven-project Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -13,11 +13,6 @@
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-    	<groupId>javax.servlet</groupId>
-    	<artifactId>servlet-api</artifactId>
-    	<version>3.0-alpha-1</version>
     </dependency>
     <dependency>
     	<groupId>org.apache.logging.log4j</groupId>
@@ -30,9 +25,15 @@
     	<version>2.11.0</version>
     </dependency>
         <dependency>
-        	<groupId>org.postgresql</groupId>
-        	<artifactId>postgresql</artifactId>
-        	<version>42.2.6</version>
+        	<groupId>javax</groupId>
+        	<artifactId>javaee-api</artifactId>
+        	<version>7.0</version>
+        </dependency>
+        <dependency>
+        	<groupId>javax.servlet</groupId>
+        	<artifactId>javax.servlet-api</artifactId>
+        	<version>3.1.0</version>
+        	<scope>provided</scope>
         </dependency>
   </dependencies>
   <build>
