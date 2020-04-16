@@ -27,12 +27,13 @@ public class AddServlet extends HttpServlet {
 		int i = Integer.parseInt(req.getParameter("t1")) ;
 		int j = Integer.parseInt(req.getParameter("t2")) ;
 		
-		//int k = i+j;
-		//int k = add(i,j);
-		//AddBean obj= new AddBean();
+		//Primer  int k = i+j;
+		//Segundo int k = add(i,j);
+		//Tercero AddBean obj= new AddBean();
 		obj.setI(i);
 		obj.setJ(j);
 		
+		//EJB
 		obj.add();
 		
 		int k= obj.getK();
@@ -40,6 +41,7 @@ public class AddServlet extends HttpServlet {
 		out.println("La suma (usando EJB) es : " + k);
 	}
 	
+	//Segundo
 //	public int add(int i, int j) 
 //	{
 //		System.out.println("Estoy en el metodo Add");
